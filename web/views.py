@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Computadora
 
 # Create your views here.
 
@@ -7,4 +7,5 @@ def login (request):
     return render(request, 'index.html')
 
 def tienda (request):
-    return render(request, 'tienda.html')
+    computadores = Computadora.objects.all()
+    return render(request, 'tienda.html', {'computadores': computadores})

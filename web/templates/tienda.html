@@ -31,21 +31,18 @@
             </div>
 
             <div class="product-grid">
+                {% for computadora in computadores %}
                 <div class="product-card">
-                    <div class="product-image"></div>
-                    <p>Text</p>
-                    <p>$0</p>
+                    <div class="product-image">
+                        <!-- Aquí puedes agregar una imagen si tienes -->
+                    </div>
+                    <p>{{ computadora.nombre }}</p>  <!-- Muestra el nombre de la computadora -->
+                    <p>${{ computadora.precio }}</p>  <!-- Muestra el precio de la computadora -->
+                    <p>{{ computadora.marca }}</p>    <!-- Muestra la marca de la computadora -->
                 </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <p>Text</p>
-                    <p>$0</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <p>Text</p>
-                    <p>$0</p>
-                </div>
+                {% empty %}
+                <p>No hay computadores disponibles en este momento.</p>  <!-- Muestra este mensaje si no hay computadores -->
+                {% endfor %}
             </div>
         </main>
     </div>

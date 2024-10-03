@@ -97,7 +97,7 @@ header nav ul li a {
 
 .search-bar button i {
   font-size: 16px;
-  color: #000; /* Color del icono */
+  color: #000; 
 }
 
 .product-grid {
@@ -112,12 +112,12 @@ header nav ul li a {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  transition: transform 0.2s; /* Añadir una animación de transición */
-  overflow: hidden; /* Evitar que el contenido se salga del contenedor */
+  transition: transform 0.2s; 
+  overflow: hidden; 
 }
 
 .product-card:hover {
-  transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+  transform: scale(1.05); 
 }
 
 .product-image {
@@ -138,18 +138,32 @@ header nav ul li a {
 }
 
 .price {
-  font-size: 1.2em; /* Aumentar el tamaño de la fuente para el precio */
-  color: #ff5722; /* Cambiar el color del precio para destacarlo */
+  font-size: 1.2em; 
+  color: #ff5722; 
 }
 
 .marca {
-  font-size: 0.9em; /* Tamaño de fuente más pequeño para la marca */
-  color: #777; /* Color más suave para la marca */
+  font-size: 0.9em; 
+  color: #777; 
 }
 
 .social-media a {
   color: white; 
   text-decoration: none; 
+}
+
+button {
+  background-color: #ecab0f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+button:hover {
+  background-color: #996f0e;
 }
 
 footer {
@@ -158,5 +172,5 @@ footer {
   padding: 20px;
   background-color: #2d2d2d;
   margin-top: 40px;
-  border-top: 2px solid white; /* Cambia el grosor y color según necesites */
+  border-top: 2px solid white; 
 }

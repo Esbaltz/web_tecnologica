@@ -102,7 +102,7 @@ header nav ul li a {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Para que las tarjetas se adapten a la pantalla */
   gap: 20px;
 }
 
@@ -112,18 +112,44 @@ header nav ul li a {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  transition: transform 0.2s; /* Añadir una animación de transición */
+  overflow: hidden; /* Evitar que el contenido se salga del contenedor */
+}
+
+.product-card:hover {
+  transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
 }
 
 .product-image {
-  width: 100px;
-  height: 100px;
+  width: 100%; /* Ajustar el ancho al 100% para que la imagen ocupe el espacio */
+  height: 200px; /* Fijar una altura para todas las imágenes */
   background-color: #e0e0e0;
-  margin: 0 auto 20px auto;
+  display: flex; /* Usar flexbox para centrar la imagen */
+  justify-content: center; 
+  align-items: center; 
+  margin-bottom: 20px; 
+  overflow: hidden; /* Evitar que la imagen se salga del contenedor */
+}
+
+.product-image img {
+  width: 100%; /* Asegurarse de que la imagen ocupe el 100% del contenedor */
+  height: 100%; /* Asegurarse de que la imagen ocupe el 100% del contenedor */
+  object-fit: cover; /* Recortar la imagen para mantener el aspecto */
+}
+
+.price {
+  font-size: 1.2em; /* Aumentar el tamaño de la fuente para el precio */
+  color: #ff5722; /* Cambiar el color del precio para destacarlo */
+}
+
+.marca {
+  font-size: 0.9em; /* Tamaño de fuente más pequeño para la marca */
+  color: #777; /* Color más suave para la marca */
 }
 
 .social-media a {
-  color: white; /* Cambia el color de los iconos a blanco */
-  text-decoration: none; /* Quita el subrayado de los enlaces */
+  color: white; 
+  text-decoration: none; 
 }
 
 footer {

@@ -8,6 +8,7 @@ class Computadora(models.Model):
     marca = models.CharField(max_length=50) 
     precio = models.DecimalField(max_digits=10, decimal_places=2) 
     descripcion = models.TextField(blank=True, null=True)
+    imagen = models.ImageField(upload_to='computadoras/', blank=True, null=True)
     fecha_de_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

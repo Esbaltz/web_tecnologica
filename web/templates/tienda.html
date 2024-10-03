@@ -29,21 +29,26 @@
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-
+           
             <div class="product-grid">
                 {% for computadora in computadores %}
                 <div class="product-card">
                     <div class="product-image">
-                        <!-- Aquí puedes agregar una imagen si tienes -->
+                        {% if computadora.imagen %}
+                        <img src="{{ computadora.imagen.url }}" alt="{{ computadora.nombre }}">
+                        {% else %}
+                        <img src="{% static 'images/placeholder.png' %}" alt="Sin imagen">  <!-- Imagen de marcador de posición si no hay imagen -->
+                        {% endif %}
                     </div>
-                    <p>{{ computadora.nombre }}</p>  <!-- Muestra el nombre de la computadora -->
-                    <p>${{ computadora.precio }}</p>  <!-- Muestra el precio de la computadora -->
-                    <p>{{ computadora.marca }}</p>    <!-- Muestra la marca de la computadora -->
+                    <h4>{{ computadora.nombre }}</h4>
+                    <p class="price">${{ computadora.precio }}</p>
+                    <p class="marca">{{ computadora.marca }}</p>
                 </div>
                 {% empty %}
-                <p>No hay computadores disponibles en este momento.</p>  <!-- Muestra este mensaje si no hay computadores -->
+                <p>No hay computadores disponibles en este momento.</p>
                 {% endfor %}
             </div>
+
         </main>
     </div>
 

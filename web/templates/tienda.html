@@ -28,10 +28,12 @@
 
         <main class="content">
             <div class="search-bar">
-                <input type="text" placeholder="Search">
-                <button>
-                    <i class="fas fa-search"></i>
-                </button>
+                <form method="GET" action="{% url 'tienda' %}">
+                    <input type="text" name="search" placeholder="Search" value="{{ request.GET.search|default_if_none:'' }}">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
             </div>
            
             <div class="product-grid">
@@ -39,17 +41,21 @@
                 <div class="product-card">
                     <div class="product-image">
                         {% if computadora.imagen %}
-                        <img src="{{ computadora.imagen.url }}" alt="{{ computadora.nombre }}">
+                        <a href="{% url 'detalle_computadora' computadora.id %}">
+                            <img src="{{ computadora.imagen.url }}" alt="{{ computadora.nombre }}">
+                        </a>
                         {% else %}
-                        <img src="{% static 'images/placeholder.png' %}" alt="Sin imagen">  <!-- Imagen de marcador de posición si no hay imagen -->
+                        <a href="{% url 'detalle_computadora' computadora.id %}">
+                            <img src="{% static 'images/placeholder.png' %}" alt="Sin imagen">  <!-- Imagen de marcador de posición si no hay imagen -->
+                        </a>
                         {% endif %}
                     </div>
-                    <h4>{{ computadora.nombre }}</h4>
-                    <p class="price">${{ computadora.precio }}</p>
-                    <p class="marca">{{ computadora.marca }}</p>
+                    <p>{{ computadora.nombre }}</p> 
+                    <p>${{ computadora.precio }}</p> 
+                    <p>{{ computadora.marca }}</p>    
                 </div>
                 {% empty %}
-                <p>No hay computadores disponibles en este momento.</p>
+                <p>No hay computadores disponibles en este momento.</p>  
                 {% endfor %}
             </div>
 

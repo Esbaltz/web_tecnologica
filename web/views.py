@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Computadora
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login as auth_login
@@ -39,18 +39,29 @@ def registro(request):
 
 @login_required
 def tienda(request):
-    computadores = Computadora.objects.all()  
+    # Obtiene todos los computadores
+    computadores = Computadora.objects.all()
+
+    # Filtrar por término de búsqueda (nombre del computador)
+    query = request.GET.get('search', '')  # Si no hay búsqueda, estará vacío
+    if query:
+        computadores = computadores.filter(nombre__icontains=query)
 
     # Filtrar por rango de precio
     precio_minimo = request.GET.get('precio_minimo')
     precio_maximo = request.GET.get('precio_maximo')
-    
+
     if precio_minimo and precio_maximo:
         computadores = computadores.filter(precio__gte=precio_minimo, precio__lte=precio_maximo)
 
-    # Filtrar por marcas
+    # Filtrar por marcas seleccionadas
     marcas_seleccionadas = request.GET.getlist('marcas')
     if marcas_seleccionadas:
         computadores = computadores.filter(marca__in=marcas_seleccionadas)
 
+    # Renderizar la vista con los computadores filtrados
     return render(request, 'tienda.html', {'computadores': computadores})
+
+def detalle_computadora(request, id):
+    computadora = get_object_or_404(Computadora, id=id)
+    return render(request, 'detalle_computadora.html', {'computadora': computadora})

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}Detalle - {{ computadora.nombre }}{% endblock titulo %}
+
+{% block links %}
+<style>
+    footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #2d2d2d;
+  border-top: 2px solid white;
+  width: 100%;  
+  position: absolute;
+  bottom: 0;
+}
+</style>
+{% endblock links %}
+
+{% block contenido %}
+    <div class="computer-details">
+        <div class="detail-card">
+            <div class="image-container">
+                {% if computadora.imagen %}
+                <img src="{{ computadora.imagen.url }}" alt="{{ computadora.nombre }}">
+                {% else %}
+                <img src="{% static 'images/placeholder.png' %}" alt="Sin imagen"> 
+                {% endif %}
+            </div>
+            <div class="info-container">
+                <h2>{{ computadora.nombre }}</h2>
+                <p><strong>Precio:</strong> ${{ computadora.precio }}</p>
+                <p><strong>Marca:</strong> {{ computadora.marca }}</p>
+                <p><strong>Descripción:</strong> {{ computadora.descripcion }}</p>
+                <a href="{% url 'tienda' %}" class="back-button">Volver a la tienda</a>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}
